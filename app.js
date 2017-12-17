@@ -14,8 +14,13 @@ var timeout = require('connect-timeout')
 var vhost = require('vhost')
 var RedisStore = require('connect-redis')(session);
 var cookieSession = require('cookie-session');
+require('./config/mongoose');
 var app = express()
 var KEY_SESSION_ID = "_s";
+
+//confifg
+const node_env = process.env.NODE_ENV  || 'development';
+global.$config = require(`./config/${node_env}`);
 
 var index = require('./routes/index');
 var users = require('./routes/users');
@@ -55,7 +60,7 @@ app.use(function (req, res, next) {
 app.use(timeout('3000s'))
 app.use(cookieSession({
     keys: KEY_SESSION_ID,
-    store: new RedisStore({ 'url' : 'redis://localhost:6379' }),
+    store: new RedisStore({ 'url' : $config.session_store_url }),
     secret: 'secret',
     resave: false,
     saveUninitialized: true,
@@ -72,6 +77,7 @@ if (process.env.NODE_ENV === 'development') {
     // only use in development
     app.use(errorhandler({log: errorNotification}))
 }
+
 
 function errorNotification (err, str, req) {
     var title = 'Error in ' + req.method + ' ' + req.url

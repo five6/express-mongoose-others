@@ -1,0 +1,17 @@
+{
+	"watch": [
+		"app.js",
+		"config",
+		"services",
+		"controllers"
+	],
+	"verbose":true,
+  "ext": "js",
+  "inspect":true,
+  "debug-brk":true,
+  "ignore": [
+  	"node_modules",
+  	"logs",
+  	"tmp"
+  	]
+}
