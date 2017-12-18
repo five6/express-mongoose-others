@@ -33,7 +33,8 @@ var users = require('./routes/users');
 // app.set('views', path.join(__dirname, 'views'));
 // app.set('view engine', 'hbs');
 // uncomment after placing your favicon in /public
-app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+express.static.mime.define({'application/font-woff': ['woff']});
+app.use(express.static('./public', { maxAge: 1000 * 60 * 60 * 24}));
 require('./assets');
 app.use(logger('dev'));
 

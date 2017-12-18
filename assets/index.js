@@ -33,10 +33,5 @@ var config = {
     build  : true,
     compress:false,
     helperContext : assetsHelpers,
-    paths: [
-        'css',
-        'js',
-        'img'
-    ]
 }
 app.use(assets(config));

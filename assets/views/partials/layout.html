@@ -1,0 +1,58 @@
+<nav class="navbar-default navbar-static-side" role="navigation">
+    <div class="sidebar-collapse">
+        <ul class="nav metismenu" id="side-menu">
+            <li class="nav-header">
+                <div class="dropdown profile-element">
+                    <span>
+                        {{# if avatar}}
+                            <img src="/files/{{{avatar}}}" style="width:64px;height:64px" class="img-circle">
+                        {{/if}}
+                    </span>
+                    <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                            <span class="clear"> <span class="block m-t-xs"> <strong class="font-bold">{{username}}</strong>
+                             </span></span> </a>
+                    <ul class="dropdown-menu animated fadeInRight m-t-xs">
+                        {{#if username}}
+                            <li><a>个人中心</a></li>
+                            <li><a>退出</a></li>
+                        {{else}}
+                            <li><a href="/login">登录</a></li>
+                        {{/if}}
+                    </ul>
+                </div>
+                <div class="logo-element">
+                    IN+
+                </div>
+            </li>
+            {{#each $layouts }}
+                {{#if submenu }}
+                    <li class="{{className}}">
+                        <a href="javascript:void(0)"><i class="fa {{icon}}"></i> <span class="nav-label">{{title}}</span> <span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level collapse {{in}}">
+                            {{#each submenu }}
+                                {{#if submenu }}
+                                    <li class="{{className}}">
+                                        <a href="javascript:void(0)"><i class="fa {{icon}}"></i> <span class="nav-label">{{title}}</span> <span class="fa arrow"></span></a>
+                                        <ul class="nav nav-third-level">
+                                            {{#each submenu }}
+                                                <li class="{{className}}">
+                                                    <a href="{{link}}">{{title}}</a>
+                                                </li>
+                                            {{/each}}
+                                        </ul>
+                                    </li>
+                                {{ else }}
+                                    <li class="{{className}}"><a href="{{link}}">{{title}}</a></li>
+                                {{/if}}
+                            {{/each}}
+                        </ul>
+                    </li>
+                {{else }}
+                    <li class="{{className}}">
+                        <a href="{{link}}" ><i class="fa fa-lg fa-fw {{icon}}"></i> <span class="menu-item-parent">{{title}}</span> <span class="badge pull-right inbox-badge margin-right-13"></span></a>
+                    </li>
+                {{/if}}
+            {{/each}}
+        </ul>
+    </div>
+</nav>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8" />
+    <title nb-bind='title'>{{title}}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge, chrome=1">
+    {{{css '_lib/bootstrap/bootstrap'}}}
+    {{{css '_lib/fontawesome/font-awesome'}}}
+    {{{css 'inspinia/style'}}}
+    {{{block 'pageStyles'}}}
+    {{{js  '_lib/underscore/underscore'}}}
+    {{{js  '_lib/moment/moment'}}}
+    {{{js  '_lib/vue/vue'}}}
+</head>
+<body>
+<div id="wrapper">
+    {{> layout}}
+    <div id="page-wrapper" class="gray-bg">
+        <div class="row border-bottom">
+            <nav class="navbar navbar-static-top white-bg" role="navigation" style="margin-bottom: 0">
+                <div class="navbar-header">
+                    <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i class="fa fa-bars"></i>
+                    </a>
+                    <form class="navbar-form-custom" method="post">
+                        <div class="form-group">
+                            <input type="text" placeholder="请输入搜索内容..." class="form-control" name="top-search" id="input-top-search">
+                        </div>
+                    </form>
+                </div>
+            </nav>
+        </div>
+        <div class="wrapper wrapper-content animated fadeInRight">
+            {{{body}}}
+        </div>
+                
+        <div class="footer">
+            <div class="pull-right">
+                .
+            </div>
+            <div>
+                <strong>Copyright</strong> eggjs
+            </div>
+        </div>
+    </div>
+</div>
+{{{js '_lib/jquery/jquery-2.1.1'}}}
+{{{js '_lib/bootstrap/bootstrap'}}}
+{{{js '_lib/metisMenu/jquery.metisMenu.js'}}}
+{{{js '_lib/slimscroll/jquery.slimscroll.js'}}}
+{{{js '_lib/pace/pace.min.js'}}}
+{{{js 'inspinia'}}}
+{{{block 'pageScripts'}}}
+
+</body>
+</html>
