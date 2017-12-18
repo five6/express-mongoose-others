@@ -1,6 +1,7 @@
 var express = require('express');
 var logger = require('morgan');
 var path = require('path');
+var chalk = require('chalk');
 var favicon = require('serve-favicon');
 // middlewares
 var compression = require('compression');
@@ -14,30 +15,34 @@ var timeout = require('connect-timeout')
 var vhost = require('vhost')
 var RedisStore = require('connect-redis')(session);
 var cookieSession = require('cookie-session');
-require('./config/mongoose');
-var app = express()
+var mongoose = require('mongoose');
+var app = express();
+global.$app = app;
 var KEY_SESSION_ID = "_s";
+const port = process.env.PORT || 3000;
 
 //confifg
 const node_env = process.env.NODE_ENV  || 'development';
 global.$config = require(`./config/${node_env}`);
+// require('./config/mongoose');
 
 var index = require('./routes/index');
 var users = require('./routes/users');
 
 // view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'hbs');
+// app.set('views', path.join(__dirname, 'views'));
+// app.set('view engine', 'hbs');
 // uncomment after placing your favicon in /public
-//app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+require('./assets');
 app.use(logger('dev'));
 
 app.use(compression());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(cookieParser());
-app.use(lessMiddleware(path.join(__dirname, 'public')));
-app.use(express.static(path.join(__dirname, 'public')));
+// app.use(lessMiddleware(path.join(__dirname, 'public')));
+// app.use(express.static(path.join(__dirname, 'public')));
 // add vhost routing to main app for mail
 // app.use(vhost('www.666666.com', app))
 
@@ -57,7 +62,7 @@ app.use(function (req, res, next) {
     next();
 });
 
-app.use(timeout('3000s'))
+app.use(timeout(10 * 60 * 1000))
 app.use(cookieSession({
     keys: KEY_SESSION_ID,
     store: new RedisStore({ 'url' : $config.session_store_url }),
@@ -73,7 +78,7 @@ app.use(function (req, res, next) {
     err.status = 404;
     next(err);
 });
-if (process.env.NODE_ENV === 'development') {
+if (node_env === 'development') {
     // only use in development
     app.use(errorhandler({log: errorNotification}))
 }
@@ -87,3 +92,30 @@ function errorNotification (err, str, req) {
     })
 }
 module.exports = app;
+
+function connect () {
+    mongoose.connect($config.mongodb.url, $config.mongodb.options);
+    return mongoose.connection;
+}
+connect()
+    .on('error', function () {
+        console.error(
+            chalk.red('Error in MongoDb connection: ' + error)
+        )
+    })
+    .on('disconnected', connect)
+    .once('open',listen);
+
+function listen () {
+    app.listen(port, (err) => {
+        if(err) {
+            console.log(chalk.red(err));
+        }
+    });
+    console.log(chalk.green('连接数据库成功'));
+    console.log('app started on port ' + port);
+    //添加model
+    require('./models')
+}
+
+

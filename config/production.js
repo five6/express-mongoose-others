@@ -1,11 +1,22 @@
 'use strict';
 
 var _ = require('lodash')
-var BASEURI = "localhost"
-var DB_URI = "mongodb://" + BASEURI + "/car";
+var BASE_URI = "localhost"
 const config = {
-    mongodb: 'mongodb://' + BASEURI + '/demo',
-    session_store_url: 'redis://localhost:6379' 
+    mongodb:{
+        url: 'mongodb://' + BASE_URI + '/demo',
+        options:{
+            useMongoClient: true,
+            autoIndex: false, // Don't build indexes
+            reconnectTries: Number.MAX_VALUE, // Never stop trying to reconnect
+            reconnectInterval: 500, // Reconnect every 500ms
+            poolSize: 10, // Maintain up to 10 socket connections
+            // If not connected, return errors immediately rather than waiting for reconnect
+            bufferMaxEntries: 0
+        }
+    },
+    session_store_url: 'redis://localhost:6379'
 }
+
 
 module.exports = config;
