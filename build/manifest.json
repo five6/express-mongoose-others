@@ -1,6 +1,6 @@
 {
   "assets": {
-    "inspinia.js": "inspinia-5effeeb79805b5c9aafebb8c2733c6e0.js",
+    "inspinia.js": "inspinia-12f28967dc5e56b3dbbfbc1e2fadba8c.js",
     "animate.css": "animate-bd99dc21097132e2ac3a3de23d01218e.css"
   },
   "files": {
@@ -12,9 +12,15 @@
     },
     "animate-bd99dc21097132e2ac3a3de23d01218e.css": {
       "logical_path": "animate.css",
-      "mtime": "2017-12-09T14:22:28.000Z",
+      "mtime": "2017-12-19T05:16:10.000Z",
       "size": 59380,
       "digest": "bd99dc21097132e2ac3a3de23d01218e"
+    },
+    "inspinia-12f28967dc5e56b3dbbfbc1e2fadba8c.js": {
+      "logical_path": "inspinia.js",
+      "mtime": "2017-12-19T05:16:12.000Z",
+      "size": 8838,
+      "digest": "12f28967dc5e56b3dbbfbc1e2fadba8c"
     }
   }
 }

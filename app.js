@@ -9,10 +9,10 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var lessMiddleware = require('less-middleware');
 var session = require('express-session');
-var errorhandler = require('errorhandler')
-var notifier = require('node-notifier')
-var timeout = require('connect-timeout')
-var vhost = require('vhost')
+var errorhandler = require('errorhandler');
+var notifier = require('node-notifier');
+var timeout = require('connect-timeout');
+var vhost = require('vhost');
 var RedisStore = require('connect-redis')(session);
 var cookieSession = require('cookie-session');
 var mongoose = require('mongoose');
@@ -116,7 +116,8 @@ function listen () {
     console.log(chalk.green('连接数据库成功'));
     console.log('app started on port ' + port);
     //添加model
-    require('./models')
+    require('./models');
+    require('./controllers');
 }
 
 

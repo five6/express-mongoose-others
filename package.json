@@ -31,6 +31,7 @@
     "ioredis": "^3.2.2",
     "less-middleware": "~2.2.1",
     "lodash": "^4.17.4",
+    "mathjs": "^3.18.0",
     "method-override": "^2.3.10",
     "moment": "^2.20.0",
     "mongoose": "^4.13.7",
