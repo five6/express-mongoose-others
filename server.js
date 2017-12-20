@@ -24,10 +24,10 @@ const port = process.env.PORT || 3000;
 //confifg
 const node_env = process.env.NODE_ENV  || 'development';
 global.$config = require(`./config/${node_env}`);
-// require('./config/mongoose');
-
-var index = require('./routes/index');
-var users = require('./routes/users');
+require('./common/helper');
+require('./common/sys');
+// var index = require('./routes/index');
+// var users = require('./routes/users');
 
 // view engine setup
 // app.set('views', path.join(__dirname, 'views'));
@@ -49,8 +49,8 @@ app.use(cookieParser());
 
 
 
-app.use('/', index);
-app.use('/users', users);
+// app.use('/', index);
+// app.use('/users', users);
 
 
 app.use(function (req, res, next) {

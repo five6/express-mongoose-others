@@ -1,8 +1,9 @@
 'use strict';
 
-var _ = require('lodash')
-var BASE_URI = "localhost"
+var _ = require('lodash');
+var BASE_URI = "localhost";
 const config = {
+    CONTROLLERS:['user/**','home/**'],
     mongodb:{
         url: 'mongodb://' + BASE_URI + '/demo',
         options:{
