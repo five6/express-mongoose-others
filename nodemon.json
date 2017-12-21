@@ -1,6 +1,6 @@
 {
 	"watch": [
-		"app.js",
+		"server.js",
 		"config",
 		"services",
 		"controllers"

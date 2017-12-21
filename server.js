@@ -16,8 +16,9 @@ var vhost = require('vhost');
 var RedisStore = require('connect-redis')(session);
 var cookieSession = require('cookie-session');
 var mongoose = require('mongoose');
-var app = express();
-global.$app = app;
+global.$app = new express();
+var app = $app;
+
 var KEY_SESSION_ID = "_s";
 const port = process.env.PORT || 3000;
 
@@ -37,7 +38,6 @@ express.static.mime.define({'application/font-woff': ['woff']});
 app.use(express.static('./public', { maxAge: 1000 * 60 * 60 * 24}));
 require('./assets');
 app.use(logger('dev'));
-
 app.use(compression());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
@@ -52,6 +52,8 @@ app.use(cookieParser());
 // app.use('/', index);
 // app.use('/users', users);
 
+require('./models');
+require('./controllers');
 
 app.use(function (req, res, next) {
     if (req.cookies) return next();
@@ -72,7 +74,6 @@ app.use(cookieSession({
     saveUninitialized: true,
     //cookie: { maxAge: 60000 }
 }));
-
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
     var err = new Error('Not Found');
@@ -92,8 +93,6 @@ function errorNotification (err, str, req) {
         message: str
     })
 }
-module.exports = app;
-
 function connect () {
     mongoose.connect($config.mongodb.url, $config.mongodb.options);
     return mongoose.connection;
@@ -116,8 +115,7 @@ function listen () {
     console.log(chalk.green('连接数据库成功'));
     console.log('app started on port ' + port);
     //添加model
-    require('./models');
-    require('./controllers');
+    
 }
 
 
