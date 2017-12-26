@@ -9,4 +9,4 @@ function home(req, res, next){
     res.render('index');
 }
 
-$app.use('/home', router);
+$app.use('/', router);

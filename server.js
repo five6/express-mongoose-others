@@ -74,25 +74,32 @@ app.use(cookieSession({
     saveUninitialized: true,
     //cookie: { maxAge: 60000 }
 }));
+
+app.use(function(err, req, res, next){
+    if (req.xhr) {
+        res.status(500).json({error : JSON.stringify(err)});
+    } else {
+        if("development" === process.env.NODE_ENV){
+            res.locals.error_message = err.message;
+            res.locals.error_stack = err.stack;
+        }else {
+            res.locals.error_message = "Something went wrong!";
+        }
+        res.status(500).render('error500');
+    }
+});
+
+
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
-    var err = new Error('Not Found');
-    err.status = 404;
-    next(err);
+    if(req.xhr) {
+        res.status(404).json({error : "api not found!"});
+    } else {
+        res.render('error404');
+    }
 });
-if (node_env === 'development') {
-    // only use in development
-    app.use(errorhandler({log: errorNotification}))
-}
 
 
-function errorNotification (err, str, req) {
-    var title = 'Error in ' + req.method + ' ' + req.url
-    notifier.notify({
-        title: title,
-        message: str
-    })
-}
 function connect () {
     mongoose.connect($config.mongodb.url, $config.mongodb.options);
     return mongoose.connection;
