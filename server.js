@@ -13,8 +13,8 @@ var errorhandler = require('errorhandler');
 var notifier = require('node-notifier');
 var timeout = require('connect-timeout');
 var vhost = require('vhost');
-var RedisStore = require('connect-redis')(session);
-var cookieSession = require('cookie-session');
+var MongoStore = require('connect-mongo')(session);
+// var cookieSession = require('cookie-session'); 
 var mongoose = require('mongoose');
 global.$app = new express();
 var app = $app;
@@ -49,11 +49,16 @@ app.use(cookieParser());
 
 
 
-// app.use('/', index);
-// app.use('/users', users);
-
-require('./models');
-require('./controllers');
+app.use(timeout(10 * 60 * 1000))
+app.use(session({
+    keys: KEY_SESSION_ID,
+      // store: new RedisStore({ 'url' : $config.sessen_store_url }),
+    store: new MongoStore({ 'url' : $config.mongodb.url }), 
+    secret: 'secret',
+    resave: false,
+    saveUninitialized: true,
+    //cookie: { maxAge: 60000 }
+}));
 
 app.use(function (req, res, next) {
     if (req.cookies) return next();
@@ -65,15 +70,11 @@ app.use(function (req, res, next) {
     next();
 });
 
-app.use(timeout(10 * 60 * 1000))
-app.use(cookieSession({
-    keys: KEY_SESSION_ID,
-    store: new RedisStore({ 'url' : $config.session_store_url }),
-    secret: 'secret',
-    resave: false,
-    saveUninitialized: true,
-    //cookie: { maxAge: 60000 }
-}));
+
+// router 在 session之后定义
+require('./models');
+require('./controllers');
+
 
 app.use(function(err, req, res, next){
     if (req.xhr) {

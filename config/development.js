@@ -15,8 +15,7 @@ const config = {
             // If not connected, return errors immediately rather than waiting for reconnect
             bufferMaxEntries: 0
         }
-    },
-    session_store_url: 'redis://localhost:6379' 
+    }
 }
 
 module.exports = config;

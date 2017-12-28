@@ -7,17 +7,15 @@ const oAuthTypes = [
 ];
 
 const UserSchema = new Schema({
-    name: { type: String, default: '' },
-    email: { type: String, default: '' },
-    nickName: { type: String, default: '' },
+    _id: { type: String},
     password: { type: String, default: '' },
     salt: { type: String, default: '' },// 供与密码加密
     authToken: { type: String, default: '' },
     github: {},
   });
 UserSchema.methods = {
-    authenticate: function (plainText) {
-        return this.encryptPassword(plainText) === this.password;
+    authenticate: function (password) {
+        return this.encryptPassword(password) === this.password;
     },
     makeSalt: function () {
         return Date.now();

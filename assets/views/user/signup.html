@@ -5,39 +5,29 @@
 </style>
 {{/contentFor}}
 {{#contentFor 'pageScripts'}}
-
+{{{js  '_lib/vue/vue'}}}
+{{{js 'user/signup'}}}
 {{/contentFor}}
 
 <body class="gray-bg">
-
-    <div class="middle-box text-center loginscreen   animated fadeInDown">
+    <div class="middle-box text-center loginscreen   animated fadeInDown" id="app">
         <div>
-            <div>
-
-                <h1 class="logo-name">IN+</h1>
-
-            </div>
-            <h3>Register to IN+</h3>
-            <p>Create account to see it in action.</p>
+            <h3>注册</h3>
             <form class="m-t" role="form" action="login.html">
                 <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Name" required="">
+                    <input type="text" v-model.trim="user._id" class="form-control" placeholder="用户名" required="">
                 </div>
                 <div class="form-group">
-                    <input type="email" class="form-control" placeholder="Email" required="">
+                    <input type="password" v-model.trim="user.password" class="form-control" placeholder="密码" required="">
                 </div>
                 <div class="form-group">
-                    <input type="password" class="form-control" placeholder="Password" required="">
+                        <div class="checkbox i-checks"><label> <input v-model="policy" type="checkbox"><i></i> 同意政策和条例 </label></div>
                 </div>
-                <div class="form-group">
-                        <div class="checkbox i-checks"><label> <input type="checkbox"><i></i> Agree the terms and policy </label></div>
-                </div>
-                <button type="submit" class="btn btn-primary block full-width m-b">Register</button>
+                <button type="button" @click="commit" class="btn btn-primary block full-width m-b">注册</button>
 
-                <p class="text-muted text-center"><small>Already have an account?</small></p>
-                <a class="btn btn-sm btn-white btn-block" href="login.html">Login</a>
+                <p class="text-muted text-center"><small>已有账号?</small></p>
+                <a class="btn btn-sm btn-white btn-block" href="/user/signin">登录</a>
             </form>
-            <p class="m-t"> <small>Inspinia we app framework base on Bootstrap 3 &copy; 2014</small> </p>
         </div>
     </div>
 </body>
