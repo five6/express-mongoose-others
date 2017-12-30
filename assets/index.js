@@ -7,7 +7,7 @@ app.engine('html', hbs.express4({
     partialsDir: __dirname + '/views/partials',
     layoutsDir: __dirname + '/views/layout',
     blockHelperName: 'block',
-    contentHelperName: 'contentFor',
+    contentHelperName: 'content',
     beautify: true
 }));
 
