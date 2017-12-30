@@ -1,16 +1,25 @@
-{{!< blank}}
+{{!< empty}}
 {{#contentFor 'pageStyles'}}
+{{{css '_lib/bootstrap/bootstrap'}}} 
+{{{css '_lib/fontawesome/font-awesome'}}} 
+{{{css 'animate'}}}
+{{{css 'inspinia/style'}}} 
 <style type="text/css">
-  
+   [v-cloak] {
+        display: none; 
+    }
 </style>
 {{/contentFor}}
 {{#contentFor 'pageScripts'}}
+{{{js '_lib/jquery/jquery-2.1.1'}}} 
+{{{js '_lib/bootstrap/bootstrap'}}} 
+{{{js '_lib/metisMenu/jquery.metisMenu.js'}}}
 {{{js  '_lib/vue/vue'}}}
 {{{js 'user/signup'}}}
 {{/contentFor}}
 
 <body class="gray-bg">
-    <div class="middle-box text-center loginscreen   animated fadeInDown" id="app">
+    <div class="middle-box text-center loginscreen   animated fadeInDown"  id="app"   v-cloak>
         <div>
             <h3>注册</h3>
             <form class="m-t" role="form" action="login.html">
