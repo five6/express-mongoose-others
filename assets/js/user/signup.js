@@ -20,7 +20,7 @@ const app = new Vue({
                 contentType: 'application/json',
                 success: function (ret) {
                     if(ret.code === 0)
-                        window.location.href = '/';
+                        window.location.href = '/user/signin';
                 }
             })
         }

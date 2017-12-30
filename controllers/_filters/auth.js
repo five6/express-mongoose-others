@@ -1,11 +1,15 @@
 'use strict';
 
-exports.auth = (req, res ,next) => {
-    console.log('auth');
-    console.log(req.session);
-    if(req.session.user) {
+exports.auth = (req, res, next) => {
+    if (req.session.user) {
+        res.locals.username = req.session.user._id;
         next();
-    }else {
+    } else {
         res.render('user/signin');
     }
-} 
+}
+
+exports.menu = (req, res, next) => {
+    res.locals.$menu =  $config.menu;
+    next();
+}

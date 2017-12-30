@@ -2,6 +2,7 @@
 
 var _ = require('lodash')
 var BASE_URI = "localhost";
+const parent = require('./common')
 const config = {
     CONTROLLERS:['user/**','home/**'],
     mongodb:{
@@ -17,5 +18,5 @@ const config = {
         }
     }
 }
+module.exports = _.defaults(config, parent)
 
-module.exports = config;

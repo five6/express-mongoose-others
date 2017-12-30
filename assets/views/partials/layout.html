@@ -9,25 +9,35 @@
     <div class="navbar-collapse collapse" id="navbar">
         <ul class="nav navbar-nav">
             <li class="dropdown">
-                <a aria-expanded="false" role="button" href="#" class="dropdown-toggle" data-toggle="dropdown"> 加入我们
+                <a aria-expanded="false" role="button" href="#" class="dropdown-toggle" data-toggle="dropdown"> 我的模块
                     <span class="caret"></span>
                 </a>
                 <ul role="menu" class="dropdown-menu">
                     <li>
-                        <a href="/user/signin">登录</a>
+                        <a href="/">页面 1</a>
                     </li>
                     <li>
-                        <a href="/user/signup">注册</a>
+                        <a href="/">页面 2</a>
+                    </li>
+                    <li>
+                        <a href="/">页面 3</a>
                     </li>
                 </ul>
             </li>
         </ul>
         <ul class="nav navbar-top-links navbar-right">
-            <li>
-                <a href="login.html">
-                    <i class="fa fa-sign-out"></i> Log out
-                </a>
-            </li>
+            {{#if username}}
+                <li>
+                    <a href="/user/api/signout">退出</a>
+                </li>
+            {{else}}
+                <li>
+                    <a href="/user/signin">登录</a>
+                </li>
+                <li>
+                    <a href="/user/signup">注册</a>
+                </li>
+            {{/if}}
         </ul>
     </div>
 </nav>

@@ -1,6 +1,8 @@
 'use strict';
 
 var _ = require('lodash');
+const parent = require('./common')
+
 var BASE_URI = "localhost";
 const config = {
     CONTROLLERS:['user/**','home/**'],
@@ -18,5 +20,4 @@ const config = {
     }
 }
 
-
-module.exports = config;
+module.exports = _.defaults(config, parent)

@@ -6,11 +6,9 @@ router.get('/signup', signUp);
 router.get('/signin', signIn);
 
 function signUp(req, res, next){
-    console.log('sign up')
     res.render('user/signup');
 }
 function signIn(req, res, next){
-    console.log('sign in')
     res.render('user/signin');
 }
 $app.use('/user', router);

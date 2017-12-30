@@ -22,18 +22,13 @@ var app = $app;
 var KEY_SESSION_ID = "_s";
 const port = process.env.PORT || 3000;
 
-//confifg
+//config
 const node_env = process.env.NODE_ENV  || 'development';
 global.$config = require(`./config/${node_env}`);
 require('./common/helper');
 require('./common/sys');
-// var index = require('./routes/index');
-// var users = require('./routes/users');
+require('./config/logger');
 
-// view engine setup
-// app.set('views', path.join(__dirname, 'views'));
-// app.set('view engine', 'hbs');
-// uncomment after placing your favicon in /public
 express.static.mime.define({'application/font-woff': ['woff']});
 app.use(express.static('./public', { maxAge: 1000 * 60 * 60 * 24}));
 require('./assets');
@@ -42,8 +37,6 @@ app.use(compression());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(cookieParser());
-// app.use(lessMiddleware(path.join(__dirname, 'public')));
-// app.use(express.static(path.join(__dirname, 'public')));
 // add vhost routing to main app for mail
 // app.use(vhost('www.666666.com', app))
 
@@ -106,7 +99,7 @@ function connect () {
     return mongoose.connection;
 }
 connect()
-    .on('error', function () {
+    .on('error', function (error) {
         console.error(
             chalk.red('Error in MongoDb connection: ' + error)
         )
