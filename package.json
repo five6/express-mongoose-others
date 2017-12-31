@@ -55,6 +55,7 @@
     "swagger-ui-express": "^2.0.13",
     "utility": "^1.13.1",
     "vhost": "^3.0.2",
-    "winston": "^3.0.0-rc1"
+    "winston": "^2.4.0",
+    "winston-daily-rotate-file": "^1.7.2"
   }
 }

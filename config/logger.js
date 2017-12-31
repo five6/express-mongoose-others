@@ -1,20 +1,24 @@
 'use strict';
+var fs = require('fs');
+
+if ($config.LOG_DIR && !fs.existsSync($config.LOG_DIR))
+	fs.mkdirSync($config.LOG_DIR);
 
 const winston = require('winston');
+require('winston-daily-rotate-file');
 
-const logger = winston.createLogger({
-  level: 'info',
-  format: winston.format.json(),
-  transports: [
-    new winston.transports.File({ dirname: $config.LOG_DIR, filename: 'error.log', level: 'error' }),
-    new winston.transports.File({ dirname: $config.LOG_DIR, filename: 'info.log', level: 'info' })
-  ]
+var transport = new (winston.transports.DailyRotateFile)({
+  dirname: $config.LOG_DIR,
+  filename:'log',
+  datePattern: 'yyyy-MM-dd.',
+  prepend: true,
+  level: process.env.ENV === 'development' ? 'debug' : 'info'
 });
 
-if (process.env.NODE_ENV !== 'production') {
-  logger.add(new winston.transports.Console({
-    format: winston.format.simple()
-  }));
-}
+var logger = new (winston.Logger)({
+  transports: [
+    transport
+  ]
+});
 
 global.$logger = logger;
