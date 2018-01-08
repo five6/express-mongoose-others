@@ -1,7 +1,7 @@
 {
   "assets": {
-    "inspinia.js": "inspinia-5effeeb79805b5c9aafebb8c2733c6e0.js",
-    "animate.css": "animate-bd99dc21097132e2ac3a3de23d01218e.css"
+    "inspinia.js": "inspinia-bf262a11ab68f04d4b85f70b4a618c27.js",
+    "animate.css": "animate-77421af36d5bfbe03160d782d1033f78.css"
   },
   "files": {
     "inspinia-5effeeb79805b5c9aafebb8c2733c6e0.js": {
@@ -12,9 +12,27 @@
     },
     "animate-bd99dc21097132e2ac3a3de23d01218e.css": {
       "logical_path": "animate.css",
-      "mtime": "2017-12-09T14:22:28.000Z",
+      "mtime": "2018-01-06T04:03:29.000Z",
       "size": 59380,
       "digest": "bd99dc21097132e2ac3a3de23d01218e"
+    },
+    "inspinia-12f28967dc5e56b3dbbfbc1e2fadba8c.js": {
+      "logical_path": "inspinia.js",
+      "mtime": "2018-01-06T04:03:30.000Z",
+      "size": 8838,
+      "digest": "12f28967dc5e56b3dbbfbc1e2fadba8c"
+    },
+    "inspinia-bf262a11ab68f04d4b85f70b4a618c27.js": {
+      "logical_path": "inspinia.js",
+      "mtime": "2018-01-06T04:03:30.000Z",
+      "size": 4274,
+      "digest": "bf262a11ab68f04d4b85f70b4a618c27"
+    },
+    "animate-77421af36d5bfbe03160d782d1033f78.css": {
+      "logical_path": "animate.css",
+      "mtime": "2018-01-06T04:03:29.000Z",
+      "size": 46412,
+      "digest": "77421af36d5bfbe03160d782d1033f78"
     }
   }
 }

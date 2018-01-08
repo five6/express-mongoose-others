@@ -31,7 +31,7 @@ app.set('views', __dirname + '/views');
 var config = {
     buildDir : 'build',
     build  : true,
-    compress:false,
+    compress:true, //开发环境false, 线上环境 true
     helperContext : assetsHelpers,
 }
 app.use(assets(config));
