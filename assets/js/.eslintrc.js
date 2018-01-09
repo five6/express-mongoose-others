@@ -7,12 +7,14 @@ module.exports = {
     },
     globals: {
         "$": false,
+        "QC":false,
         EventBus : false,
         Vue : false,
         T : false,
         "_" : false
     },
     rules:{
+        "no-console": "off",
         "no-unused-vars": ["error", { "vars": "all", "args": "none", "ignoreRestSiblings": false }]
     }
 };
