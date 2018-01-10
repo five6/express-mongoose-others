@@ -8,6 +8,7 @@ module.exports = {
     globals: {
         "$": false,
         "QC":false,
+        WB2:false,
         EventBus : false,
         Vue : false,
         T : false,
