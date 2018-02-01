@@ -11,16 +11,16 @@ exports.auth = (req, res, next) => {
 }
 
 exports.menu = (req, res, next) => {
-    const menu = _.map($config.menu, side => {
+    const menu = _.map(_.cloneDeep($config.menu), side => {
         if (side.submenu) {
             _.each(side.submenu, child => {
-                if (url.parse(req.url).pathname === child.link) {
+                if (url.parse(req.originalUrl).pathname === child.link) {
                     child.active = 'active';
                     side.active = 'active';
                 }
             });
         } else {
-            if (url.parse(req.url).pathname === side.link) {
+            if (url.parse(req.originalUrl).pathname === side.link) {
                 side.active = 'active';
             }
         }

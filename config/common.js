@@ -6,6 +6,9 @@ const config = {
     UPLOAD_DIR: __dirname + '/../uploads',
     menu: [
         {
+            link: '/', title: '主页',
+        },
+        {
             link: '/blogs', title: '博客',
         },
         {

@@ -21,7 +21,6 @@ async function signIn(req, res, next) {
             } else {
                 res.redirect('/user/signin');
             }
-
         } else {
             res.redirect('/user/signin');
         }
