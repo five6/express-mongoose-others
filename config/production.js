@@ -5,7 +5,7 @@ const parent = require('./common')
 
 var BASE_URI = "localhost";
 const config = {
-    CONTROLLERS:['user/**','home/**'],
+    CONTROLLERS:['user/**','home/**','blogs/**'],
     mongodb:{
         url: 'mongodb://' + BASE_URI + '/demo',
         options:{

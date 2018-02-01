@@ -1,11 +1,24 @@
-'use strict'; 
+'use strict';
 
-const _ = require('lodash')
 const config = {
-    LOG_DIR : __dirname + '/../logs',
-	TMP_DIR: __dirname + '/../tmp',
-	UPLOAD_DIR: __dirname + '/../uploads',
-    menu:[
+    LOG_DIR: __dirname + '/../logs',
+    TMP_DIR: __dirname + '/../tmp',
+    UPLOAD_DIR: __dirname + '/../uploads',
+    menu: [
+        {
+            link: '/blogs', title: '博客',
+        },
+        {
+            link: null, title: '个人中心',
+            submenu: [
+                {
+                    link: '/user/profile', title: '我的主页',
+                },
+                {
+                    link: '/blogs/create', title: '写博客'
+                }
+            ],
+        },
     ]
 }
 module.exports = config;

@@ -8,22 +8,26 @@
     </div>
     <div class="navbar-collapse collapse" id="navbar">
         <ul class="nav navbar-nav">
-            <li class="dropdown">
-                <a aria-expanded="false" role="button" href="#" class="dropdown-toggle" data-toggle="dropdown"> 我的模块
-                    <span class="caret"></span>
-                </a>
-                <ul role="menu" class="dropdown-menu">
-                    <li>
-                        <a href="/">页面 1</a>
+            {{#each $menu }}
+                {{#if submenu }}
+                    <li class="dropdown {{active}}">
+                        <a aria-expanded="false" role="button" href="#" class="dropdown-toggle" data-toggle="dropdown">{{title}}
+                            <span class="caret"></span>
+                        </a>
+                        <ul role="menu" class="dropdown-menu">
+                            {{#each submenu }}
+                            <li class="{{active}}">
+                                <a href="{{link}}">{{title}}</a>
+                            </li>
+                            {{/each}}
+                        </ul>
                     </li>
-                    <li>
-                        <a href="/">页面 2</a>
+                {{else }}
+                    <li class="{{active}}">
+                        <a href="{{link}}">{{title}}</a>
                     </li>
-                    <li>
-                        <a href="/">页面 3</a>
-                    </li>
-                </ul>
-            </li>
+                {{/if}}
+            {{/each}}
         </ul>
         <ul class="nav navbar-top-links navbar-right">
             {{#if username}}

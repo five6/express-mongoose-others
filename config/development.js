@@ -4,7 +4,7 @@ var _ = require('lodash')
 var BASE_URI = "localhost";
 const parent = require('./common')
 const config = {
-    CONTROLLERS:['user/**','home/**'],
+    CONTROLLERS:['user/**','home/**','blogs/**'],
     mongodb:{
         url: 'mongodb://' + BASE_URI + '/demo',
         options:{

@@ -53,6 +53,7 @@
     "request": "^2.83.0",
     "serve-favicon": "~2.4.5",
     "swagger-ui-express": "^2.0.13",
+    "url": "^0.11.0",
     "utility": "^1.13.1",
     "vhost": "^3.0.2",
     "winston": "^2.4.0",

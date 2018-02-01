@@ -1,10 +1,9 @@
+'use strict';
+
 const mongoose = require('mongoose');
 const crypto = require('crypto');
-const moment = require('moment');
 const Schema = mongoose.Schema;
-const oAuthTypes = [
-  'github',
-];
+
 
 const UserSchema = new Schema({
     _id: { type: String},

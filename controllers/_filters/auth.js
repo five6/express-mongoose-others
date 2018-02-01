@@ -1,5 +1,6 @@
 'use strict';
-
+const _ = require('lodash');
+const url = require('url');
 exports.auth = (req, res, next) => {
     if (req.session.user) {
         res.locals.username = req.session.user._id;
@@ -10,6 +11,21 @@ exports.auth = (req, res, next) => {
 }
 
 exports.menu = (req, res, next) => {
-    res.locals.$menu =  $config.menu;
+    const menu = _.map($config.menu, side => {
+        if (side.submenu) {
+            _.each(side.submenu, child => {
+                if (url.parse(req.url).pathname === child.link) {
+                    child.active = 'active';
+                    side.active = 'active';
+                }
+            });
+        } else {
+            if (url.parse(req.url).pathname === side.link) {
+                side.active = 'active';
+            }
+        }
+        return side;
+    });
+    res.locals.$menu = menu;
     next();
 }

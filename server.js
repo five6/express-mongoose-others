@@ -7,12 +7,9 @@ var favicon = require('serve-favicon');
 var compression = require('compression');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-var lessMiddleware = require('less-middleware');
 var session = require('express-session');
-var errorhandler = require('errorhandler');
-var notifier = require('node-notifier');
+// var notifier = require('node-notifier');
 var timeout = require('connect-timeout');
-var vhost = require('vhost');
 var MongoStore = require('connect-mongo')(session);
 // var cookieSession = require('cookie-session'); 
 var mongoose = require('mongoose');
@@ -37,20 +34,17 @@ app.use(compression());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(cookieParser());
-// add vhost routing to main app for mail
-// app.use(vhost('www.666666.com', app))
 
 
 
 app.use(timeout(10 * 60 * 1000))
 app.use(session({
     keys: KEY_SESSION_ID,
-      // store: new RedisStore({ 'url' : $config.sessen_store_url }),
     store: new MongoStore({ 'url' : $config.mongodb.url }), 
     secret: 'secret',
     resave: false,
     saveUninitialized: true,
-    //cookie: { maxAge: 60000 }
+    cookie: { maxAge: 60000 }
 }));
 
 app.use(function (req, res, next) {

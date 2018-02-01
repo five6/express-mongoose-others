@@ -6,7 +6,7 @@ var middleware = require('../_filters/auth');
 const UserModel = mongoose.model('User');
 router.post('/signup', signUp);
 router.post('/signin', signIn);
-router.get('/signout', middleware.auth, signout)
+router.get('/signout', middleware.auth, signout);
 async function signIn(req, res, next) {
     $logger.info('用户登陆');
     const body = req.body;
